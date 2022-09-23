@@ -2,7 +2,7 @@ package edu.mum.cs544.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import edu.mum.cs544.entities.Book;
+import edu.mum.cs544.entities.User;
 
-public interface IBookDao extends JpaRepository<Book, Integer> {
+public interface IUserDao extends JpaRepository<User, Integer> {
 }
