@@ -4,28 +4,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.ISBN;
+
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book {
+public class Comment {
     @Id
     @GeneratedValue
     private int id;
     @NotBlank
-    private String title;
-    @ISBN
-    private String ISBN;
-    @NotBlank
-    private String author;
-    @Positive
-    private double price;
+    private String comment ;
+    @NotNull
+    private int numberOfLines ;
+    @NotNull
+    private int postId; 
 
 }
