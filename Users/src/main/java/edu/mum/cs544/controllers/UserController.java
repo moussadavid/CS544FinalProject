@@ -1,5 +1,7 @@
 package edu.mum.cs544.controllers;
 
+import edu.mum.cs544.dtos.GetUser;
+import edu.mum.cs544.dtos.UpdateUser;
 import edu.mum.cs544.entities.User;
 import edu.mum.cs544.services.UserService;
 import lombok.AllArgsConstructor;
@@ -19,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User get(@PathVariable int id) {
+    public GetUser get(@PathVariable int id) {
         return userService.get(id);
     }
 
@@ -30,7 +32,7 @@ public class UserController {
     }
 
     @PutMapping
-    public User update(@RequestBody User user) {
+    public UpdateUser update(@RequestBody UpdateUser user) {
         return userService.update(user);
     }
 
@@ -38,5 +40,4 @@ public class UserController {
     public boolean delete(@PathVariable long id) {
         return userService.delete((int) id);
     }
-
 }
