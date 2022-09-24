@@ -2,10 +2,14 @@ package edu.mum.cs544.services;
 
 import java.util.List;
 
+import edu.mum.cs544.dtos.GetUser;
 import edu.mum.cs544.dtos.KCCreateUser;
+import edu.mum.cs544.dtos.UpdateUser;
 import edu.mum.cs544.entities.User;
 import edu.mum.cs544.repositories.IUserDao;
 import lombok.AllArgsConstructor;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private final IUserDao userDao;
     private final KeycloakAdminClientService keycloakAdminClientService;
+    private final ModelMapper modelMapper;
 
     public List<User> getAll() {
         return userDao.findAll();
@@ -30,12 +35,12 @@ public class UserService {
         return null;
     }
 
-    public User get(int id) {
-        return userDao.findById(id).get();
+    public GetUser get(int id) {
+        return modelMapper.map(userDao.findById(id).get(), GetUser.class);
     }
 
-    public User update(User user) {
-        return userDao.save(user);
+    public UpdateUser update(UpdateUser user) {
+        return modelMapper.map(userDao.save(modelMapper.map(user, User.class)), UpdateUser.class);
     }
 
     public boolean delete(int id) {
